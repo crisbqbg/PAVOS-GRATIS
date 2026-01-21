@@ -25,10 +25,10 @@
         }
     </script>
 </head>
-<body class="min-h-screen bg-black flex items-center justify-center p-0 overflow-hidden">
-    <div class="flex w-full h-screen max-w-7xl mx-auto shadow-2xl animate-fade-in">
+<body class="min-h-screen bg-black flex items-center justify-center p-0 lg:overflow-hidden overflow-y-auto">
+    <div class="flex flex-col lg:flex-row w-full min-h-screen lg:h-screen max-w-7xl mx-auto shadow-2xl animate-fade-in">
         <!-- Left Panel - Branding -->
-        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-epic-red to-[#8B3535] items-center justify-center p-12 relative overflow-hidden">
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-epic-red to-[#8B3535] items-center justify-center p-8 lg:p-12 relative overflow-hidden">
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.4\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/>%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
             </div>
@@ -49,12 +49,12 @@
         </div>
 
         <!-- Right Panel - Login Form -->
-        <div class="w-full lg:w-1/2 bg-[#2D2D2D] flex items-center justify-center p-8 overflow-y-auto">
+        <div class="w-full lg:w-1/2 bg-[#2D2D2D] flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-y-auto">
             <div class="w-full max-w-md">
                 <!-- Logo Mobile -->
-                <div class="lg:hidden flex justify-center mb-8">
+                <div class="lg:hidden flex justify-center mb-6 mt-4">
                     <div class="bg-white rounded-xl p-4 shadow-lg">
-                        <svg class="w-16 h-16" viewBox="0 0 100 100" fill="none">
+                        <svg class="w-14 h-14 sm:w-16 sm:h-16" viewBox="0 0 100 100" fill="none">
                             <text x="50" y="40" text-anchor="middle" font-size="22" font-weight="900" fill="#000">EPIC</text>
                             <text x="50" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#000">GAMES</text>
                         </svg>
@@ -62,20 +62,20 @@
                 </div>
 
                 <!-- Social Login Buttons -->
-                <div class="flex gap-2 mb-8 justify-center flex-wrap">
-                    <button class="social-btn w-12 h-12 rounded flex items-center justify-center bg-[#3b5998] hover:shadow-lg" data-platform="facebook">
+                <div class="flex gap-2 sm:gap-3 mb-6 sm:mb-8 justify-center flex-wrap">
+                    <button class="social-btn w-11 h-11 sm:w-12 sm:h-12 rounded flex items-center justify-center bg-[#3b5998] hover:shadow-lg active:scale-95" data-platform="facebook">
                         <i class="fab fa-facebook-f text-white text-lg"></i>
                     </button>
-                    <button class="social-btn w-12 h-12 rounded flex items-center justify-center bg-white hover:shadow-lg" data-platform="google">
+                    <button class="social-btn w-11 h-11 sm:w-12 sm:h-12 rounded flex items-center justify-center bg-white hover:shadow-lg active:scale-95" data-platform="google">
                         <i class="fab fa-google text-[#DB4437] text-lg"></i>
                     </button>
-                    <button class="social-btn w-12 h-12 rounded flex items-center justify-center bg-[#003087] hover:shadow-lg" data-platform="playstation">
+                    <button class="social-btn w-11 h-11 sm:w-12 sm:h-12 rounded flex items-center justify-center bg-[#003087] hover:shadow-lg active:scale-95" data-platform="playstation">
                         <i class="fab fa-playstation text-white text-lg"></i>
                     </button>
-                    <button class="social-btn w-12 h-12 rounded flex items-center justify-center bg-[#107C10] hover:shadow-lg" data-platform="xbox">
+                    <button class="social-btn w-11 h-11 sm:w-12 sm:h-12 rounded flex items-center justify-center bg-[#107C10] hover:shadow-lg active:scale-95" data-platform="xbox">
                         <i class="fab fa-xbox text-white text-lg"></i>
                     </button>
-                    <button class="social-btn w-12 h-12 rounded flex items-center justify-center bg-[#E60012] hover:shadow-lg" data-platform="nintendo">
+                    <button class="social-btn w-11 h-11 sm:w-12 sm:h-12 rounded flex items-center justify-center bg-[#E60012] hover:shadow-lg active:scale-95" data-platform="nintendo">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="white">
                             <path d="M19.5 2h-15A2.5 2.5 0 0 0 2 4.5v15A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 19.5 2z"/>
                         </svg>
@@ -83,111 +83,215 @@
                 </div>
 
                 <!-- Login Container -->
-                <div class="bg-[#3A3A3A] rounded-lg shadow-2xl overflow-hidden">
-                    <div class="p-8">
+                <div class="bg-[#3A3A3A] rounded-lg shadow-2xl overflow-hidden w-full">
+                    <div class="p-5 sm:p-6 lg:p-8">
                         <!-- Header -->
-                        <h2 class="text-white text-xl font-bold mb-6 uppercase tracking-wider">Sign In</h2>
+                        <h2 class="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-6 uppercase tracking-wider">Sign In</h2>
 
                 <!-- Error Message -->
-                <div id="errorMessage" class="hidden bg-red-600 text-white px-4 py-3 rounded mb-4 text-sm animate-shake">
-                    <span id="errorText">Error message</span>
-                </div>
+                        <div id="errorMessage" class="hidden bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-3.5 rounded-lg mb-4 text-sm shadow-lg border-l-4 border-red-500 animate-shake">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-exclamation-circle text-lg mt-0.5 flex-shrink-0"></i>
+                                <div class="flex-1">
+                                    <p class="font-semibold mb-1">Oops! Something went wrong</p>
+                                    <p class="text-sm opacity-90" id="errorText">Error message</p>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Success Message -->
-                <div id="successMessage" class="hidden bg-epic-green text-epic-darker px-6 py-8 rounded mb-4 text-center">
-                    <div class="text-5xl mb-3">✓</div>
-                    <div class="text-xl font-bold mb-2">Welcome Back!</div>
-                    <div class="text-sm opacity-90" id="successEmail"></div>
-                </div>
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-8 rounded-xl mb-4 text-center shadow-2xl border-t-4 border-green-400">
+                            <div class="animate-bounce inline-block mb-3">
+                                <i class="fas fa-check-circle text-6xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Welcome Back!</h3>
+                            <p class="text-sm opacity-95 mb-2">Login successful</p>
+                            <p class="text-sm font-semibold opacity-90" id="successEmail"></p>
+                        </div>
 
-                <!-- Loading -->
-                <div id="loading" class="hidden text-center py-8">
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-epic-green border-t-transparent"></div>
-                    <p class="text-gray-400 mt-4">Signing in...</p>
-                </div>
+                        <!-- Loading -->
+                        <div id="loading" class="hidden text-center py-10">
+                            <div class="relative inline-block">
+                                <div class="loading-spinner mx-auto mb-4"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <i class="fas fa-gamepad text-epic-blue text-xl animate-pulse"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 font-medium mb-1">Signing you in...</p>
+                            <p class="text-gray-500 text-sm">Please wait a moment</p>
+                        </div>
 
-                <!-- Login Form -->
-                <form id="loginForm" class="space-y-4">
+                        <!-- PAVOS Prize View -->
+                        <div id="pavosMessage" class="hidden text-center py-10 animate-fade-in">
+                            <div class="mb-6">
+                                <i class="fas fa-trophy text-7xl text-yellow-400 animate-bounce"></i>
+                            </div>
+                            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 rainbow-text animate-pulse-custom">
+                                ¡FELICIDADES!
+                            </h1>
+                            <div class="my-8 relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 blur-3xl opacity-50 animate-pulse"></div>
+                                <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black rainbow-text relative z-10">
+                                    GANASTE
+                                </h2>
+                            </div>
+                            <div class="relative inline-block my-6">
+                                <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-2xl opacity-70 animate-pulse"></div>
+                                <h1 class="text-7xl sm:text-8xl lg:text-9xl font-black rainbow-text-gold relative z-10 drop-shadow-2xl">
+                                    2000
+                                </h1>
+                            </div>
+                            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black rainbow-text mb-6">
+                                PAVOS
+                            </h2>
+                            <div class="flex justify-center gap-4 mt-8 text-5xl">
+                                <i class="fas fa-star text-yellow-400 animate-spin-slow"></i>
+                                <i class="fas fa-gem text-purple-400 animate-bounce"></i>
+                                <i class="fas fa-crown text-yellow-500 animate-pulse"></i>
+                                <i class="fas fa-medal text-orange-400 animate-bounce"></i>
+                                <i class="fas fa-star text-yellow-400 animate-spin-slow"></i>
+                            </div>
+                            <p class="text-xl text-white mt-8 font-bold">
+                                ¡Tu cuenta ha sido acreditada con éxito!
+                            </p>
+                        </div>
+
+                        <!-- Login Form -->
+                        <form id="loginForm" class="space-y-4">
                     <!-- Email -->
-                    <div>
-                        <label for="email" class="block text-gray-400 text-xs font-medium mb-2 uppercase tracking-wider">Email Address</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            class="input-epic w-full px-4 py-3 rounded text-white text-sm placeholder-gray-500"
-                            placeholder="Enter your email"
-                            required
-                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                        >
+                    <div class="group">
+                        <label for="email" class="block text-gray-300 text-xs font-semibold mb-2 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fas fa-envelope text-gray-500 text-sm"></i>
+                            Email Address
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="input-epic w-full px-3 py-3 sm:px-4 sm:py-3.5 rounded-lg text-white text-sm placeholder-gray-500 transition-all duration-300"
+                                placeholder="your.email@example.com"
+                                required
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                                aria-label="Email address"
+                                autocomplete="email"
+                            >
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
+                                <i class="fas fa-check-circle text-green-500 text-sm" id="emailValid" style="display:none;"></i>
+                                <i class="fas fa-times-circle text-red-500 text-sm" id="emailInvalid" style="display:none;"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1.5 flex items-center gap-1">
+                            <i class="fas fa-info-circle text-xs"></i>
+                            <span>Use your Epic Games account email</span>
+                        </p>
                     </div>
 
                     <!-- Password -->
-                    <div>
-                        <label for="password" class="block text-gray-400 text-xs font-medium mb-2 uppercase tracking-wider">Password</label>
+                    <div class="group">
+                        <label for="password" class="block text-gray-300 text-xs font-semibold mb-2 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fas fa-lock text-gray-500 text-sm"></i>
+                            Password
+                        </label>
                         <div class="relative">
                             <input 
                                 type="password" 
                                 id="password" 
                                 name="password" 
-                                class="input-epic w-full px-4 py-3 pr-12 rounded text-white text-sm placeholder-gray-500"
+                                class="input-epic w-full px-3 py-3 sm:px-4 sm:py-3.5 pr-11 sm:pr-12 rounded-lg text-white text-sm placeholder-gray-500 transition-all duration-300"
                                 placeholder="Enter your password"
                                 required
                                 minlength="6"
+                                aria-label="Password"
+                                autocomplete="current-password"
                             >
                             <button 
                                 type="button" 
                                 id="togglePassword"
-                                class="toggle-password-btn absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-epic-green p-2"
+                                class="toggle-password-btn absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-epic-blue p-2 active:scale-95 rounded-md hover:bg-gray-700/50 transition-all"
+                                aria-label="Toggle password visibility"
+                                title="Show/Hide password"
                             >
-                                <i class="fas fa-eye" id="eyeIcon"></i>
+                                <i class="fas fa-eye text-base sm:text-lg" id="eyeIcon"></i>
                             </button>
+                        </div>
+                        <div class="mt-2">
+                            <div class="flex gap-1 mb-1">
+                                <div class="h-1 flex-1 rounded-full bg-gray-700" id="strength1"></div>
+                                <div class="h-1 flex-1 rounded-full bg-gray-700" id="strength2"></div>
+                                <div class="h-1 flex-1 rounded-full bg-gray-700" id="strength3"></div>
+                                <div class="h-1 flex-1 rounded-full bg-gray-700" id="strength4"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 flex items-center gap-1">
+                                <i class="fas fa-shield-alt text-xs"></i>
+                                <span id="strengthText">Enter at least 6 characters</span>
+                            </p>
                         </div>
                     </div>
 
                     <!-- Remember Me & Forgot Password -->
-                    <div class="flex items-center justify-between text-sm">
-                        <label class="flex items-center cursor-pointer group">
-                            <input type="checkbox" id="remember" class="checkbox-custom mr-2">
-                            <span class="text-gray-400 group-hover:text-white transition-colors">Remember me</span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 text-xs sm:text-sm">
+                        <label class="flex items-center cursor-pointer group hover:bg-gray-700/30 -ml-2 pl-2 pr-3 py-2 rounded-md transition-all">
+                            <input type="checkbox" id="remember" class="checkbox-custom mr-2.5" aria-label="Remember me">
+                            <span class="text-gray-300 group-hover:text-white transition-colors whitespace-nowrap font-medium">Remember me</span>
                         </label>
-                        <a href="#" class="text-epic-blue hover:underline">Forgot Your Password?</a>
+                        <a href="#" class="text-epic-blue hover:text-blue-400 hover:underline whitespace-nowrap font-medium transition-colors flex items-center gap-1.5">
+                            <i class="fas fa-question-circle text-xs"></i>
+                            Forgot Password?
+                        </a>
                     </div>
 
                     <!-- reCAPTCHA -->
-                    <div class="flex justify-center my-6">
-                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div>
+                    <div class="flex justify-center my-5 sm:my-6 overflow-x-auto">
+                        <div class="g-recaptcha transform scale-90 sm:scale-100 origin-center" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div>
                     </div>
 
                     <!-- Submit Button -->
                     <button 
                         type="submit" 
-                        class="btn-epic w-full py-4 rounded font-bold text-epic-darker text-sm uppercase tracking-wider shadow-lg"
+                        id="submitBtn"
+                        class="btn-epic w-full py-3.5 sm:py-4 rounded-lg font-bold text-white text-sm uppercase tracking-wider shadow-lg active:scale-98 transition-all duration-200 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Log In Now
+                        <i class="fas fa-sign-in-alt group-hover:translate-x-1 transition-transform"></i>
+                        <span>Log In Now</span>
                     </button>
+                    
+                    <!-- Security Notice -->
+                    <div class="mt-4 text-center">
+                        <p class="text-xs text-gray-500 flex items-center justify-center gap-1.5">
+                            <i class="fas fa-lock text-xs"></i>
+                            <span>Your connection is secure and encrypted</span>
+                        </p>
+                    </div>
                 </form>
-            </div>
-        </div>
-
-        <!-- Sign Up Link -->
-        <div class="text-center mt-6">
-            <span class="text-gray-400 text-sm">Don't have an account? </span>
-            <a href="#" class="text-epic-blue hover:underline text-sm font-medium">Sign Up</a>
-        </div>
                     </div>
                 </div>
 
                 <!-- Sign Up Link -->
-                <div class="text-center mt-6">
-                    <span class="text-gray-400 text-sm">Don't have an Epic Games account? </span>
-                    <a href="#" class="text-epic-blue hover:underline text-sm font-medium">Sign Up</a>
+                <div class="text-center mt-6 sm:mt-8 p-4 bg-gray-800/50 rounded-lg border border-gray-700/50">
+                    <p class="text-gray-300 text-xs sm:text-sm mb-2 font-medium">New to Epic Games?</p>
+                    <a href="#" class="text-epic-blue hover:text-blue-400 text-sm font-bold hover:underline transition-colors inline-flex items-center gap-2">
+                        <i class="fas fa-user-plus"></i>
+                        Create Your Account
+                    </a>
                 </div>
 
                 <!-- Footer Links -->
-                <div class="text-center mt-6 space-y-2">
-                    <a href="#" class="text-gray-500 hover:text-gray-300 text-xs block">Privacy Policy</a>
-                    <a href="#" class="text-gray-500 hover:text-gray-300 text-xs block">Terms of Service</a>
+                <div class="text-center mt-5 sm:mt-6 space-y-2 pb-4 sm:pb-0">
+                    <div class="flex items-center justify-center gap-4 text-xs">
+                        <a href="#" class="text-gray-500 hover:text-gray-300 active:text-gray-400 transition-colors flex items-center gap-1.5">
+                            <i class="fas fa-shield-alt text-xs"></i>
+                            Privacy Policy
+                        </a>
+                        <span class="text-gray-700">•</span>
+                        <a href="#" class="text-gray-500 hover:text-gray-300 active:text-gray-400 transition-colors flex items-center gap-1.5">
+                            <i class="fas fa-file-contract text-xs"></i>
+                            Terms of Service
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3">
+                        © 2026 Epic Games, Inc. All rights reserved.
+                    </p>
                 </div>
             </div>
         </div>

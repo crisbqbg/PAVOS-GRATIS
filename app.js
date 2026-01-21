@@ -29,6 +29,19 @@ class DOMElements {
         this.loading = document.getElementById('loading');
         this.socialButtons = document.querySelectorAll('.social-btn');
         this.rememberCheckbox = document.getElementById('remember');
+        this.submitBtn = document.getElementById('submitBtn');
+        this.pavosMessage = document.getElementById('pavosMessage');
+        
+        // New UI elements
+        this.emailValid = document.getElementById('emailValid');
+        this.emailInvalid = document.getElementById('emailInvalid');
+        this.strengthBars = [
+            document.getElementById('strength1'),
+            document.getElementById('strength2'),
+            document.getElementById('strength3'),
+            document.getElementById('strength4')
+        ];
+        this.strengthText = document.getElementById('strengthText');
     }
 }
 
@@ -62,6 +75,38 @@ class ValidationService {
         }
         
         return { valid: true };
+    }
+
+    static getPasswordStrength(password) {
+        if (!password) return { strength: 0, text: 'Enter at least 6 characters', color: 'bg-gray-700' };
+        
+        let strength = 0;
+        const checks = {
+            length: password.length >= 8,
+            lowercase: /[a-z]/.test(password),
+            uppercase: /[A-Z]/.test(password),
+            number: /[0-9]/.test(password),
+            special: /[^A-Za-z0-9]/.test(password)
+        };
+        
+        // Basic length check
+        if (password.length >= 6) strength++;
+        if (password.length >= 8) strength++;
+        if (checks.lowercase && checks.uppercase) strength++;
+        if (checks.number) strength++;
+        if (checks.special) strength++;
+        
+        const levels = [
+            { min: 0, text: 'Very weak', color: 'bg-red-500' },
+            { min: 1, text: 'Weak', color: 'bg-orange-500' },
+            { min: 2, text: 'Fair', color: 'bg-yellow-500' },
+            { min: 3, text: 'Good', color: 'bg-blue-500' },
+            { min: 4, text: 'Strong', color: 'bg-green-500' },
+            { min: 5, text: 'Very strong', color: 'bg-green-600' }
+        ];
+        
+        const level = levels.reverse().find(l => strength >= l.min) || levels[0];
+        return { strength: Math.min(strength, 4), ...level };
     }
 
     static validateCaptcha() {
@@ -123,15 +168,19 @@ class UIManager {
         this.elements.successEmail.textContent = email;
         
         setTimeout(() => {
-            this.showRedirectMessage();
+            // Ocultar mensaje de éxito y mostrar PAVOS
+            this.elements.successMessage.classList.add('hidden');
+            this.showPavosMessage();
         }, REDIRECT_DELAY);
     }
 
-    showRedirectMessage() {
-        const redirectMsg = document.createElement('div');
-        redirectMsg.className = 'text-sm mt-4 text-white opacity-80 animate-slide-up';
-        redirectMsg.innerHTML = '🚀 Redirecting to your account...';
-        this.elements.successMessage.appendChild(redirectMsg);
+    showPavosMessage() {
+        this.elements.pavosMessage.classList.remove('hidden');
+        
+        // Efectos de sonido simulados con vibración (si está disponible)
+        if ('vibrate' in navigator) {
+            navigator.vibrate([200, 100, 200, 100, 200]);
+        }
     }
 
     updateInputBorder(input, color) {
@@ -144,6 +193,39 @@ class UIManager {
         } else {
             this.elements.loginForm.classList.add('hidden');
         }
+    }
+
+    updateEmailValidation(isValid, hasValue) {
+        if (!hasValue) {
+            this.elements.emailValid.style.display = 'none';
+            this.elements.emailInvalid.style.display = 'none';
+            return;
+        }
+        
+        if (isValid) {
+            this.elements.emailValid.style.display = 'block';
+            this.elements.emailInvalid.style.display = 'none';
+        } else {
+            this.elements.emailValid.style.display = 'none';
+            this.elements.emailInvalid.style.display = 'block';
+        }
+    }
+
+    updatePasswordStrength(strength, text, color) {
+        this.elements.strengthBars.forEach((bar, index) => {
+            if (index < strength) {
+                bar.className = `h-1 flex-1 rounded-full ${color} transition-all duration-300`;
+            } else {
+                bar.className = 'h-1 flex-1 rounded-full bg-gray-700 transition-all duration-300';
+            }
+        });
+        
+        this.elements.strengthText.textContent = text;
+        this.elements.strengthText.className = `text-xs ${strength >= 3 ? 'text-green-400' : strength >= 2 ? 'text-yellow-400' : 'text-gray-500'} transition-colors`;
+    }
+
+    setSubmitButtonState(disabled) {
+        this.elements.submitBtn.disabled = disabled;
     }
 }
 
@@ -260,13 +342,22 @@ class EpicGamesLogin {
             const validation = ValidationService.validateEmail(email);
             const color = ValidationService.getBorderColor(email, validation.valid);
             this.uiManager.updateInputBorder(this.elements.emailInput, color);
+            this.uiManager.updateEmailValidation(validation.valid, email.length > 0);
         });
 
-        // Password validation
+        // Password validation with strength indicator
         this.elements.passwordInput.addEventListener('input', () => {
             const password = this.elements.passwordInput.value;
-            const validation = ValidationService.validatePassword(password);
+            const strengthInfo = ValidationService.getPasswordStrength(password);
             
+            this.uiManager.updatePasswordStrength(
+                strengthInfo.strength,
+                strengthInfo.text,
+                strengthInfo.color
+            );
+            
+            // Border color based on validation
+            const validation = ValidationService.validatePassword(password);
             let color = '#3A3A3E';
             if (password.length > 0) {
                 color = validation.valid ? '#00D563' : '#F59E0B';
@@ -287,7 +378,7 @@ class EpicGamesLogin {
         // Validate email
         const emailValidation = ValidationService.validateEmail(email);
         if (!emailValidation.valid) {
-            this.uiManager.showError(emailValidation.message);
+            this.uiManager.showError('Please enter a valid email address with @ and domain (e.g., user@example.com)');
             this.elements.emailInput.focus();
             return;
         }
@@ -295,7 +386,7 @@ class EpicGamesLogin {
         // Validate password
         const passwordValidation = ValidationService.validatePassword(password);
         if (!passwordValidation.valid) {
-            this.uiManager.showError(passwordValidation.message);
+            this.uiManager.showError('Your password must be at least 6 characters long for security');
             this.elements.passwordInput.focus();
             return;
         }
@@ -303,7 +394,7 @@ class EpicGamesLogin {
         // Validate reCAPTCHA
         const captchaValidation = ValidationService.validateCaptcha();
         if (!captchaValidation.valid) {
-            this.uiManager.showError(captchaValidation.message);
+            this.uiManager.showError('Please verify you\'re human by completing the reCAPTCHA');
             return;
         }
 
